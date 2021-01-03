@@ -1,0 +1,4 @@
+POTFILES
+Makefile.in.in
+*.gmo
+!missing

@@ -1,0 +1,53 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="resigning">
+  <info>
+    <link type="guide" xref="playing#basics"/>
+    <desc>
+      How to Resign And Answer to Resignations
+    </desc>
+    <credit type="author">
+      <name>Guido Flohr</name>
+      <email>guido@imperia.net</email>
+    </credit>
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Resigning</title>
+  <section id="you-resign">
+    <title>You Resign</title>
+    <p>You can resign the current game anytime during a match.  You do this
+       by clicking the 
+       <link xref="board-toolbar"><gui style="button">resign button</gui></link> in the <link
+         xref="board-toolbar">board toolbar</link>.
+    </p>
+    <p>
+      You will then be asked how you want to resign.  With a normal resignation
+      you will lose the current value of the cube.  A gammon resignation loses
+      twice the value of the cube, a backgammon resignation three times the value
+      of the cube.
+    </p>
+    <p>
+      Your opponent does not have to accept your resignation.  In that case
+      the game goes on or you have to offer another resignation.
+    </p>
+    <p>
+      If the resignation was accepted the current game finishes.
+    </p>
+  </section>
+
+  <section id="opponent-resigns">
+    <title>Answering To a Resignation</title>
+    <p>
+      If your opponent resigned, a dialog box will pop up showing you
+      the details.  You will see how (normal, gammon, backgammon) the
+      opponent resigned, and how many points you will win by accepting
+      the resignation.
+    </p>
+    <p>
+      You can accept or reject the resignation.
+    </p>
+  </section>
+</page>

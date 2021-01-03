@@ -1,0 +1,13 @@
+html/
+xml/
+version.xml
+*.stamp
+libgsgf-undeclared.txt
+libgsgf-undocumented.txt
+libgsgf-unused.txt
+libgsgf.args
+libgsgf.hierarchy
+libgsgf.interfaces
+libgsgf.prerequisites
+libgsgf.signals
+libgsgf.types

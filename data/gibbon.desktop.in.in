@@ -1,0 +1,9 @@
+[Desktop Entry]
+_Name=Gibbon Online Backgammon
+_Comment=Play backgammon online on FIBS.
+Exec=gibbon
+Icon=gibbon
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Game;GTK;BoardGame;

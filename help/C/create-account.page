@@ -1,0 +1,137 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="create-account">
+  <info>
+    <link type="guide" xref="index#getting-started"/>
+    <desc>
+      Create a new account.
+    </desc>
+    <credit type="author">
+      <name>Guido Flohr</name>
+      <email>guido@imperia.net</email>
+    </credit>
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Create a New Account</title>
+  <p>
+    Before you can connect (see <link xref="connect"/>) to a server, you 
+    need an account.
+  </p>
+  <p>
+    For obvious reasons, <app>FIBS</app> does not allow multiple accounts for 
+    the same person.  If you think you have a legitimate reason for
+    violating this rule, please contact the server administrator, for
+    <app>FIBS</app> this is
+    <link href="http://www.pattib.org/contact.shtml">Patti Beadles</link>,
+    prior to creating a new account.
+  </p>
+  <p>
+    If you want to create a new account on a server, click the
+    <gui>Connect</gui> button in the <link xref="main-toolbar">main
+    toolbar</link> or select the
+    <guiseq><gui>File</gui><gui>Connect</gui></guiseq> menu entry.
+    That will popup the the <link xref="connect">connection</link>
+    dialog:
+  </p>
+  <p>
+    <media type="image" mime="src/png" src="figures/connection-dialog.png">
+      The connection dialog
+    </media>
+  </p>
+  <p>
+    Click the <gui style="button">Register new account</gui> button
+    beneath the <gui style="label">User name</gui> text entry.
+    You will then see this dialog:
+  </p>
+  <p>
+    <media type="image" mime="src/png" src="figures/register-account.png">
+      The account creation dialog
+    </media>
+  </p>
+  <p>
+    The following information is needed:
+  </p>
+  <list>
+    <item>
+      <p><gui style="label">Server</gui></p>
+      <p>
+        The name or IP address of the server you want to connect to.
+        In doubt, try “fibs.com”.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Port</gui></p>
+      <p>
+        The port number. In doubt use the default port number 4321.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">User name</gui></p>
+      <p>
+        The user name you want to use on that server.  It is - of course -
+        not possible to use a name used by somebody else.  A little
+        surprising: Your name must not contain digits, hyphens,
+        or two or more subsequent underscores.
+      </p>
+      <p>
+        This name will be your identity on the server! While it is not illegal
+        to choose a silly or offensive name - in fact some people have 
+        remarkably silly or offensive names on <app>FIBS</app> - you want to 
+        think twice about how you want to be known to your future backgammon 
+        partners.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Save Password?</gui></p>
+      <p>
+        Check this box, if you want <app>Gibobn</app> to remember
+        your password for you.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Password</gui></p>
+      <p>
+        Choose a suitable password.
+      </p>
+      <p>
+        <em>Important!</em> All communication with the server is
+        unencrypted.  It is therefore visible to everybody in your
+        network, and to everybody in the networks between you and 
+        the server (that will mostly be the staff of Internet
+        Service Providers).  This information should not make you
+        panic because it is quite unlikely that anybody is
+        interested in eavesdropping your backgammon communication.
+        But you must remember that your password is also visible
+        to these people.
+      </p>
+      <p>
+        The password is also visible to everybody with superuser
+        (or administrator) privileges on your computer because
+        <app>Gibbon</app> currently does not encrypt your password.
+      </p>
+      <p>
+        Therefore, use a password that is not too easy to guess
+        but do <em>not</em> use a “valuable” password here!
+        That means, do not use a password that you use for other
+        sensitive accounts like for online banking or internet
+        shops.  It is a well-known fact that criminals routinely collect
+        user name and password combinations, and try to reuse them
+        on other servers.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Repeat Password</gui></p>
+      <p>
+        You must repeat your password.
+      </p>
+      <p>
+        <em>Important!</em> Do <em>not</em> forget your password!
+        You can only recover it, if you have given a valid e-mail
+        address, in the connection, see <link xref="connect"/>!
+      </p>
+    </item>
+  </list>
+</page>

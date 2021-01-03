@@ -1,0 +1,32 @@
+#! /bin/sh
+
+tmp1=$builddir/tmp-1.sgf
+tmp2=$builddir/tmp-2.sgf
+
+cleanup() {
+        rm -f $tmp1 $tmp2
+}
+
+die() {
+        cleanup
+        exit 1
+}
+
+trap 'die' 1 2 3 15
+
+for file_in in $SGF_FILES; do
+        cleanup
+        file=`echo $file_in | sed -e 's/\.in$//'`
+        if test $file != $file_in; then
+                sgf_file=$builddir/$file
+        else
+                sgf_file=$srcdir/$file
+        fi
+        #echo $builddir/gsgf-write-back $sgf_file $tmp1 $tmp2 
+        $builddir/gsgf-write-back $sgf_file $tmp1 $tmp2 || exit 1
+        if test -e $tmp1; then
+                diff -u $tmp1 $tmp2 || exit 1
+        fi
+done
+
+cleanup

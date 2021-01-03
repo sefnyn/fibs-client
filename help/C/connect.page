@@ -1,0 +1,86 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="connect">
+  <info>
+    <link type="guide" xref="index#getting-started"/>
+    <desc>
+      Connect to a backgammon server.
+    </desc>
+    <credit type="author">
+      <name>Guido Flohr</name>
+      <email>guido@imperia.net</email>
+    </credit>
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Connecting To a Server</title>
+  <p>
+    Once you have started <app>Gibbon</app>,
+    you can initiate a connection to a server by clicking the
+    <gui style="button">Connect</gui> button in the <link 
+    xref="main-toolbar">main toolbar</link>.  Alternatively, you can
+    use the <guiseq><gui>File</gui><gui>Connect</gui></guiseq> menu
+    entry.
+  </p>
+  <p>
+    Either way, this will pop up a connection dialog:
+  </p>
+  <p>
+    <media type="image" mime="src/png" src="figures/connection-dialog.png">
+      The connection dialog
+    </media>
+  </p>
+  <p>
+    You have to fill in the following information:
+  </p>
+  <list>
+    <item>
+      <p><gui style="label">Server</gui></p>
+      <p>
+        The name or IP address of the server you want to connect to.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Port</gui></p>
+      <p>
+        The port number. In doubt use the default port number 4321.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">User name</gui></p>
+      <p>
+        Your user name on the server.  If you do not have an account
+        you can <link xref="create-account">create</link> one from
+        withing <app>Gibbon</app>.
+      </p>
+    </item>
+    <item>
+      <p><gui style="label">Password</gui></p>
+      <p>
+        This is also necessary.
+      </p>
+    </item>
+    <item>
+      <p>
+        Optionally, an e-mail address.  This e-mail address will be
+        visible to everybody else on the server.
+      </p>
+      <p>
+        <em>Hint:</em> It is not necessary to give any address.
+        And if you give one, it is not necessary to be valid.  However,
+        you can only recover a forgotten password, if you have given a 
+        valid e-mail address on FIBS.  FIBS requires this, so that it can
+        identify you.  In other words, it is a trade-off between your privacy 
+        and poor memorizing.
+      </p>
+      <p>
+        <em>Another hint:</em> FIBS does not allow arbitrary strings here.
+        If you want to give the address of a web site instead of an
+        e-mail address, you have to omit the leading scheme, i.e. 
+        do not write “http://www.example.com/” but “www.example.com”.
+      </p>
+    </item>
+  </list>
+</page>

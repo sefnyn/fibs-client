@@ -1,0 +1,157 @@
+- Do not return NULL from constructor of GibbonCairoboard in case the 
+  constructor fails.
+- Are esacped values in SGF files passed through?
+- Remove all traces of backgammon from gsgf.h.
+- Check that write_stream methods do not leak memory (pointer to
+  temporary buffer must be freed, or alloca() must be used).
+- Trade memory for performance: Avoid NULL pointers in gsgf-flavor.c.
+- No need to check for single value in the new_from_raw constructors
+  of libgsgf.  This is already done by the constraints.  Alternatively,
+  gratuitous values could be discarded.
+- Refactor set_value() method of GSGFText.  It must be possible to
+  return an error.
+- Remove the constructs if (*error) *error = NULL; fix caller instead.
+- gsgf_node_get_property_cooked() must return a GSGFValue and should therefore
+  be renamed.
+- When setting the value of a GSGFProperty, that property must be
+  automatically cooked.
+- Decide on a philosophy for adding components in libgsgf.  Either always
+  increase the reference count and leave the added object to the caller
+  or always hijack the object.
+- Go through gsgf-private.h and remove what is not needed.  Turn the rest
+  into private class methods.
+- Order header functions in libgsgf headers.
+- GSGFSimpleText does not allow newlines.  Enforce that restriction.
+  For example, gsgf_game_tree_set_application() must be changed
+  accordingly.
+- Check whether the player list context menu can be created with glade.
+  Before 3.5.4 it was always converted to a GtkAction.
+- Change svg-util.c to not switch locale.  Instead fix libsvg to
+  use the g_ascii_strto...() functions from glib.
+- Password gets lost if not saved in preferences.  Use a temporary
+  buffer for it.
+- Cancelling a connection attempt probably has a race.  The connector
+  object gets unreffed before it can check its state.  FIX: Temporarily
+  keep a reference.
+- Get rid of GibbonSignal, it's pretty useless.
+- gibbon-session.c leaks memory in case of board errors; pos must be freed!
+- gibbon-game-chat.c: Depending on the current situation, not all of 
+  say, kibitz, and whisper are possible.
+- activate/deactivate game chat entry according to situation.
+- gibbon_session_handle_board() leaks memory, in case of failure.
+- Remove old lines from beginning of text views in order to save memory.
+- In the shout room, make TAB-expansion work on know user names.
+- Write a GSettings mapping functions for hostnames that turns the entry
+  into a canonical form.
+- Implement some sort of auto-idle that sets you to `not ready' after some
+  time of inactivity.
+- FIBS messages (** ...) should be displayed in a non-modal dialog.
+- Remove code that handles the FIBS spanner bug.  It is fixed by now.
+- IMPORTANT: If a saved match was an unlimited one, only optionally allow
+  resuming it but display the normal match length selection.  Otherwise,
+  both opponents have to wait until the match expires.
+- Handle "wait for ... to join, too" and make sure that there is no deadlock if   both parties use Gibbon.
+- Hash with saved games must be updated, when match finishes.
+- Doubling cube not clickable, when not centered.
+- Black bear-off goes to wrong side, when animated.
+- When resuming a match, where we have turned the cube, the cube is not
+  displayed.
+- Segfault: Unlimited match, resumed, rejected recube from opponent with 
+  right-click.
+- Make sure that src/test-match-complete does not leak memory.
+- gibbon_player_list_column_types and similar arrays seem to be unneeded.
+- Check the desctructor of GibbonApp.  More objects should be destroyed.
+- This move gets displayed incorrectly: 55: 16/6/1 8/3.
+- The cubeful equities at the end of the 8th game in 7point-analysed.sgf
+  are wrong.
+- Switch to libgda.
+- Common messages should be hidden from the user.  Examples are
+  "** You invited ...", "** The board won't be refreshed after every move".
+- Why is the login phase so slow?  There are long gaps between the server
+  replies and the commands send by us.
+- implement a counter in the match completion code to prevent infinite loops.
+  Print a warning, when the counter drops to zero.
+- Relax gibbon_position_technically_equal in the dice comparison part.
+  It is sufficient that the absolute values of the two dice in arbitrary
+  order are equal.
+- Refactor macro gibbon_match_return_val_if_fail to gibbon_return_val_if_fail.
+- Bring player list to front on connect.
+- Loading a match with a syntax error does not bring up the GUI.
+- Move animation does not work.
+- Implement simple bear-offs by clicking on the bear-off tray.
+- The reset button for the board should always work, and reset the position
+  to the initial one.  That allows to always move the checkers around,
+  provided that the board keeps track of two positions.  Harder than it
+  looks because the checker movement is not handed by the board atm.
+- Check that a setup where the game is over is handled correctly, when
+  reading GMD.
+- when adding actions to a match, check whether we may double, and update
+  information about the Crawford rule.
+- Move animation got lost and should be rewritten anyway.
+- help is not listed in SUBDIRS, even on Unix.
+- Check whether it is possible to end a saved game of fixed length by
+  inviting to a new one.
+- When leaving a match, we necessarily have a saved match with the opponent.
+  Add the opponent to the internal list.
+- In a post-crawford game, the display switches between Crawford and
+  Post-Crawford.
+- When terminating the program while we are watching or playing, a drop
+  penalty is stored in the database.  At least for watching games, this is
+  definitely wrong.
+- Chatting is still cumbersome with longer messages.
+- Show "logged in", "logged out" à la pidgin in chat windows, maybe also
+  "starts playing", "stops playing".
+- Download Geo IP database from original location.
+- When refusing a cube or accepting a resignation, make sure that the
+  corresponding icon is still displayed on the board.
+- In the match continuation code, set may double flags according to Crawford
+  state.
+- Reactivate debugging code for match continuation.  Currently all matches
+  must continue smoothlessly.
+- Getting saved count for inviters no longer works.
+- Quick bear-off is broken, when dice are swapped.
+- 33: 3-off 3-off 1-off 1-off is not found.
+- End-of-match is saved wrongly.
+- Crawford game no longer gets displayed.
+- With a lot of pending invitations, we never get the saved count but only
+  see the spinner.
+- Ranks are stored whenever a match was resumed.
+- When we watch somebody who is not playing, we send a "board" command and
+  get the reply "the_user is not playing".  After that, we can no longer 
+  send commands to the server, neither manaully from the console, nor
+  automatically with the ui.  First fix the blocking, then prevent the
+  gratuitous board command for users that are not playing.
+- After logging in, it takes about one second until we read the reply from the
+  server although it is there immediately.  The problem seems to be that 
+  g_input_stream_read_async never calls the callback before one second.
+- If we get the first rawwho for ourselves, check that it matches the 
+  mail address set by the user.  If it does not, set the address.  Bear in 
+  mind, however, that it is not possible to unset an already set address.
+  This has to be done only on the first rawwho.  Later, read the configured
+  address instead, and set it accordingly with GSettings.
+- Invitations are not deleted, when the inviter plays with somebody else?
+  Accepting such a stale invitation crashes Gibbon and leads to an error
+  "no match" in BaldLies.
+- When starting watching an ongoing match, the first position is labelled
+  as "initial position" instead of "setup position".
+- Watching a 1-point match at 0-0 displays "Post-Crawford game" in the
+  status field.
+- Feedback for tell/say/whisper/kibitz/alert misses a newline, when send
+  back from BaldLies.
+- When watching, after white has doubled, black's may-double flag of the 
+  computed position toggles between true and false.
+- Program currently hangs, after inviting another player.
+- Logging timestamps are flawed.  The timestamp is computed after a line read
+  from the server has been processed.  Instead, the timestamp should be 
+  computed after reading and before processing.
+- Check exact impact of autoboard.  When are extra boards sent?
+- Doubles while watching are not parsed correctly.  Do not expect a
+  "The cube shows N" in that case!
+- Redoubles are not parsed.
+- Add debugging code to gibbon-connection so that all unhandled messages from
+  the server are printed on stderr.
+- Check that HTML entities are unescaped in messages from the server.
+- The motto of the day should be displayed in a dialog box with a checkbox
+  "Do not display this again".  If the user selects to not display the motto
+  of the day, it should be displayed in the server console instead.
+- configure fails if itstool is not installed

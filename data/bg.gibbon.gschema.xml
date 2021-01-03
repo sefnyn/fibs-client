@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/bg/gibbon/" id="bg.gibbon">
+    <child schema="bg.gibbon.preferences" name="preferences"/>
+    <child schema="bg.gibbon.data" name="data"/>
+  </schema>
+  <schema path="/bg/gibbon/preferences/" id="bg.gibbon.preferences">
+    <child schema="bg.gibbon.preferences.debugging" name="debugging"/>
+    <child schema="bg.gibbon.preferences.match" name="match"/>
+    <child schema="bg.gibbon.preferences.server" name="server"/>
+  </schema>
+  <schema path="/bg/gibbon/preferences/debugging/" id="bg.gibbon.preferences.debugging">
+    <key type="b" name="server-communication">
+      <default>false</default>
+      <summary>Show server communication</summary>
+      <description>Show complete server communication in server console.</description>
+    </key>
+    <key type="b" name="timestamps">
+      <default>true</default>
+      <summary>Show timestamps</summary>
+      <description>Prefix all server output with a high-resolution timestamp.</description>
+    </key>
+    <key type="s" name="logfile">
+      <default>''</default>
+      <summary>Log communication</summary>
+      <description>Log all communication to a file. The pid of the process will be automatically appended to the filename.</description>
+    </key>
+  </schema>
+  <schema path="/bg/gibbon/preferences/match/" id="bg.gibbon.preferences.match">
+    <key type="u" name="length">
+      <range min="0" max="99"/>
+      <default>5</default>
+      <summary>Preferred match length</summary>
+      <description>Preferred match length (-1 for unlimited).</description>
+    </key>
+    <key type="b" name="auto-swap">
+      <default>true</default>
+      <summary>Automatically swap dice</summary>
+      <description>Automatically swap dice so that the higher die lies at the left.</description>
+    </key>
+    <key type="b" name="ready">
+      <default>false</default>
+      <summary>Ready to play</summary>
+      <description>Can other players invite you to a match?</description>
+    </key>
+    <key type="b" name="show-equity">
+      <default>false</default>
+      <summary>Show equity</summary>
+      <description>Display match equity instead of match winning chances in analysis</description>
+    </key>
+  </schema>
+  <schema path="/bg/gibbon/preferences/server/" id="bg.gibbon.preferences.server">
+    <key type="s" name="address">
+      <default>''</default>
+      <summary>E-mail address</summary>
+      <description>E-mail address to display on the server.</description>
+    </key>
+    <key type="s" name="host">
+      <default>'fibs.com'</default>
+      <summary>Server</summary>
+      <description>The server that you want to connect to, usually fibs.com.</description>
+    </key>
+    <key type="s" name="login">
+      <default>''</default>
+      <summary>Login</summary>
+      <description>Your username on the server.</description>
+    </key>
+    <key type="s" name="password">
+      <default>''</default>
+      <summary>Password</summary>
+      <description>Your password on the server.</description>
+    </key>
+    <key type="q" name="port">
+      <default>4321</default>
+      <summary>Port</summary>
+      <description>The port number of the server, normally 4321.</description>
+    </key>
+    <key type="b" name="save-password">
+      <default>false</default>
+      <summary>Remember password?</summary>
+      <description>Should your password be stored on your hard disk?</description>
+    </key>
+  </schema>
+  <schema path="/bg/gibbon/data/" id="bg.gibbon.data">
+    <child schema="bg.gibbon.data.recent" name="recent"/>
+  </schema>
+  <schema path="/bg/gibbon/data/recent/" id="bg.gibbon.data.recent">
+    <key type="u" name="max-commands">
+      <default>100</default>
+      <range min="1" max="65535"/>
+      <summary>Maximum saved commands</summary>
+      <description>Maximum number of server commands that should be remembered for auto-completion in the server console.</description>
+    </key>
+    <key type="as" name="commands">
+      <default>[]</default>
+      <summary>Recent commands</summary>
+      <description>List of commands that have been sent to the server recently.</description>
+    </key>
+  </schema>
+</schemalist>

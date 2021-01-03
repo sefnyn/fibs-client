@@ -1,0 +1,859 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+<chapter id="general-properties">
+  <para>
+    The following properties can be used in all flavors of SGF.  You should
+    note that some of them are bound to abstract classes in libgsgf.  When
+    parsing SGF data, the values are cooked into the corresponding derived
+    classes of the particular <link linkend="GSGFFlavor">GSGFFlavor</link>
+    in use.
+  </para>
+  <para>
+    For example, for backgammon, whenever a 
+    <link linkend="GSGFMove">GSGFMove</link> is specified as the type,
+    you will really get a 
+    <link linkend="GSGFMoveBackgammon">GSGFMoveBackgammon</link>.
+    The same applies to <link linkend="GSGFPoint">GSGFPoint</link>
+    (cast to <link linkend="GSGFPointBackgammon">GSGFPointBackgammon</link>,
+    and
+    to <link linkend="GSGFStone">GSGFStone</link>
+    (cast to <link linkend="GSGFStoneBackgammon">GSGFStoneBackgammon</link>,
+  </para>
+  <title>General SGF Properties</title>
+  <sect1 id="move-properties">
+    <title>Move Properties</title>
+    <sect2 id="property-B">
+      <title>B (Black move)</title>
+      <para>
+        Type: <link linkend="GSGFMove">GSGFMove</link>:
+      </para>
+      <para>
+        A move for player Black.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#B">http://www.red-bean.com/sgf/properties.html#B</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-KO">
+      <title>KO (Illegal move)</title>
+      <para>
+        Type: <link linkend="GSGFEmpty">GSGFEmpty</link>:
+      </para>
+      <para>
+        Mark a move node as illegal.  This property is a no-op for
+        applications based on libgsgf.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#KO">http://www.red-bean.com/sgf/properties.html#KO</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-MN">
+      <title>MN (Move number)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>:
+      </para>
+      <para>
+        Set move number.  This property is only interesting for
+        incomplete games.  Otherwise you should just rely on
+        chronological move numbers.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#MN">http://www.red-bean.com/sgf/properties.html#MN</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-W">
+      <title>W (White move)</title>
+      <para>
+        Type: <link linkend="GSGFMove">GSGFMove</link>:
+      </para>
+      <para>
+        A move for player White.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#W">http://www.red-bean.com/sgf/properties.html#W</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="setup-properties">
+    <title>Setup Properties</title>
+    <sect2 id="property-AB">
+      <title>AB (Add black stone)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link> of
+        <link linkend="GSGFStone">GSGFStone</link>:
+      </para>
+      <para>
+        Set a black stone.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AB">http://www.red-bean.com/sgf/properties.html#AB</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-AE">
+      <title>AE (Add empty stone, or clear point)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link> of
+        <link linkend="GSGFPoint">GSGFPoint</link>:
+      </para>
+      <para>
+        Clear a point.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AE">http://www.red-bean.com/sgf/properties.html#AE</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-AW">
+      <title>AW (Add white stone)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link> of
+        <link linkend="GSGFStone">GSGFStone</link>:
+      </para>
+      <para>
+        Set a white stone.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AW">http://www.red-bean.com/sgf/properties.html#AW</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-PL">
+      <title>PL (Player on turn)</title>
+      <para>
+        Type: <link linkend="GSGFColor">GSGFColor</link>:
+      </para>
+      <para>
+        Tells whose turn it is.  Not needed for complete games.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#PL">http://www.red-bean.com/sgf/properties.html#PL</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="node-annotation-properties">
+    <title>Node Annotation Properties</title>
+    <sect2 id="property-C">
+      <title>C (comment)</title>
+      <para>
+        Type: <link linkend="GSGFText">GSGFText</link>
+      </para>
+      <para>
+        A comment for a node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#C">http://www.red-bean.com/sgf/properties.html#C</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-DM">
+      <title>DM (even position)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        Marks a position as even.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#DM">http://www.red-bean.com/sgf/properties.html#DM</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-GB">
+      <title>GB (good for black)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        Marks a position as good for black.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#GB">http://www.red-bean.com/sgf/properties.html#GB</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-GW">
+      <title>GB (good for white)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        Marks a position as good for white.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#GW">http://www.red-bean.com/sgf/properties.html#GW</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-HO">
+      <title>HO (hotspot)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        Marks a position as "hotspot".
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#HO">http://www.red-bean.com/sgf/properties.html#HO</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-N">
+      <title>N (name)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Gives a name to a position.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#N">http://www.red-bean.com/sgf/properties.html#N</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-UC">
+      <title>UC (unclear)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        Marks a position as unclear.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#UC">http://www.red-bean.com/sgf/properties.html#UC</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-V">
+      <title>V (value)</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        Value of the position.  Positive values are given to positions
+        with an advantage for black, negative values given to positions
+        with an advantage for white.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#V">http://www.red-bean.com/sgf/properties.html#V</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="move-annotation-properties">
+    <title>Move Annotation Properties</title>
+    <para>
+      If libgsgf encounters one of the following four properties without
+      a move in the same node (<link linkend="property-B">B</link> or
+      <link linkend="property-W">W</link> the annotation property is
+      silently discarded .
+    </para>
+    <para>
+      Having more than one move annotation property in one and the same
+      node is an error.
+    </para>
+    <sect2 id="property-BM">
+      <title>BM (bad move)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        The played move is bad.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#BM">http://www.red-bean.com/sgf/properties.html#BM</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-DO">
+      <title>DO (doubtful move)</title>
+      <para>
+        Type: <link linkend="GSGFEmpty">GSGFEmpty</link>
+      </para>
+      <para>
+        The played move is doubtful.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#DO">http://www.red-bean.com/sgf/properties.html#DO</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-IT">
+      <title>IT (interesting move)</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        The played move is interesting.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#IT">http://www.red-bean.com/sgf/properties.html#IT</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-TE">
+      <title>TE (good move or "tesuji")</title>
+      <para>
+        Type: <link linkend="GSGFDouble">GSGFDouble</link>
+      </para>
+      <para>
+        The played move is good.  In Go this is called a "tesuji".
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#TE">http://www.red-bean.com/sgf/properties.html#TE</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="markup-properties">
+    <title>Markup Properties</title>
+    <sect2 id="property-AR">
+      <title>AR (arrow)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFComposed">GSGFComposed</link>
+        (<link linkend="GSGFPoint">GSGFPoint</link>:<link linkend="GSGFPoint">GSGFPoint</link>)
+      </para>
+      <para>
+        A list of point pairs.  Each pair specifies an arrow to draw.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AR">http://www.red-bean.com/sgf/properties.html#AR</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-CR">
+      <title>CR (circle)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Mark points with a circle.  The properties CR, MA, SL, SQ, and TR must not
+        be used to mark the same point within one node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#CR">http://www.red-bean.com/sgf/properties.html#CR</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-DD">
+      <title>DD (dim point)</title>
+      <para>
+        Type: Possibly empty <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Dim out points.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#DD">http://www.red-bean.com/sgf/properties.html#DD</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-LB">
+      <title>LB (text on point)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFComposed">GSGFComposed</link>
+        (<link linkend="GSGFPoint">GSGFPoint</link>:<link linkend="GSGFSimpleText">GSGFSimpleText</link>)
+      </para>
+      <para>
+        A list of pairs of points combined with a text label.  Points must be unique.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#LB">http://www.red-bean.com/sgf/properties.html#LB</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-LN">
+      <title>LN (line)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFComposed">GSGFComposed</link>
+        (<link linkend="GSGFPoint">GSGFPoint</link>:<link linkend="GSGFPoint">GSGFPoint</link>)
+      </para>
+      <para>
+        A list of point pairs.  Each pair specifies a line to draw between points.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#LN">http://www.red-bean.com/sgf/properties.html#LN</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-MA">
+      <title>MA (mark point with an X)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Mark points with an X.  The properties CR, MA, SL, SQ, and TR must not
+        be used to mark the same point within one node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#MA">http://www.red-bean.com/sgf/properties.html#MA</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-SL">
+      <title>SL (selected)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Mark points as selected.  The properties CR, MA, SL, SQ, and TR must not
+        be used to mark the same point within one node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#SL">http://www.red-bean.com/sgf/properties.html#SL</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-SQ">
+      <title>MA (mark point with a square)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Mark points with a square.  The properties CR, MA, SL, SQ, and TR must not
+        be used to mark the same point within one node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#SQ">http://www.red-bean.com/sgf/properties.html#SQ</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-TR">
+      <title>MA (mark point with a triangle)</title>
+      <para>
+        Type: <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        Mark points with a triangle.  The properties CR, MA, SL, SQ, and TR must not
+        be used to mark the same point within one node.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#TR">http://www.red-bean.com/sgf/properties.html#TR</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="root-properties">
+    <title>Root Properties</title>
+    <para>
+      Root properties are only allowed in the first node of a 
+      <link linkend="GSGFGameTree">GSGFGameTree</link>.
+    </para>
+    <sect2 id="property-AP">
+      <title>AP (Application)</title>
+      <para>
+        Type: <link linkend="GSGFComposed">GSGFComposed</link>:
+        (<link linkend="GSGFSimpleText">GSGFSimpleText</link>:<link linkend="GSGFSimpleText">GSGFSimpleText</link>)
+      </para>
+      <para>
+        The first value denotes the application, the second one the
+        version.  Both values are treated as opaque.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AP">http://www.red-bean.com/sgf/properties.html#AP</ulink>.
+      </para>
+    </sect2>
+
+    <sect2 id="property-CA">
+      <title>CA (Charset)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        The charset of the SGF file.  Note that this will always be the
+        string "UTF-8" because all SGF files are converted to UTF-8
+        by this library.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#CA">http://www.red-bean.com/sgf/properties.html#CA</ulink>.
+      </para>
+    </sect2>
+
+    <sect2 id="property-FF">
+      <title>FF (File Format)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>.
+      </para>
+      <para>
+        The number must be a positive number greater than zero.  When
+        writing, this number will always be 4.  When reading, the
+        number is ignored.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#FF">http://www.red-bean.com/sgf/properties.html#FF</ulink>.
+      </para>
+    </sect2>
+
+    <sect2 id="property-GM">
+      <title>GM (Game Type)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>.
+      </para>
+      <para>
+        The number must be a positive number greater than zero.  You can
+        get a list of well-known game types from
+        <ulink url="http://www.red-bean.com/sgf/properties.html#GM">http://www.red-bean.com/sgf/properties.html#GM</ulink>.
+      </para>
+    </sect2>
+
+    <sect2 id="property-ST">
+      <title>ST (Variation Style)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>
+      </para>
+      <para>
+        Bit mask that determines how variations are shown.  Valid
+        values are in the range 0-3.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#ST">http://www.red-bean.com/sgf/properties.html#ST</ulink>.
+      </para>
+    </sect2>
+
+    <sect2 id="property-SZ">
+      <title>SZ (Board size)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>
+        or <link linkend="GSGFComposed">GSGFComposed</link>:
+        (<link linkend="GSGFNumber">GSGFNumber</link>:<link linkend="GSGFNumber">GSGFNumber</link>)
+      </para>
+      <para>
+        Number of columns (first value) and rows (second value) of
+        the board.  Contrary to the SGF specification, the same value
+        for columns and rows is allowed.  In this case a
+        single <link linkend="GSGFNumber">GSGFNumber</link> is 
+        used instead of a 
+        <link linkend="GSGFComposed">GSGFComposed</link>.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#SZ">http://www.red-bean.com/sgf/properties.html#SZ</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="game-info-properties">
+    <title>Game Info Properties</title>
+    <sect2 id="property-AN">
+      <title>AN (annotator)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the person who annotated the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#AN">http://www.red-bean.com/sgf/properties.html#AN</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-BR">
+      <title>BR (black rank)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Rank of the black player.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#BR">http://www.red-bean.com/sgf/properties.html#BR</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-CP">
+      <title>CP (copyright)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Copyright information.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#CP">http://www.red-bean.com/sgf/properties.html#CP</ulink>.
+      </para>
+      <important>
+        <para>
+          <ulink url="http://www.gnubg.org/">GNU Backgammon</ulink>
+          uses this property instead of <link linkend="bg-property-CO">CO</link>
+          for encoding the cube owner.  The possible values are
+          w and b for white and black respectively.
+        </para>
+      </important>
+    </sect2>
+    <sect2 id="property-DT">
+      <title>DT (date)</title>
+      <para>
+        Type: <link linkend="GSGFDate">GSGFDate</link>
+      </para>
+      <para>
+        Date of the event.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#DT">http://www.red-bean.com/sgf/properties.html#DT</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-EV">
+      <title>EV (event)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the event.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#EV">http://www.red-bean.com/sgf/properties.html#EV</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-GC">
+      <title>GC (game context)</title>
+      <para>
+        Type: <link linkend="GSGFText">GSGFText</link>
+      </para>
+      <para>
+        Background information for the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#GC">http://www.red-bean.com/sgf/properties.html#GC</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-GN">
+      <title>GN (game name)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#GN">http://www.red-bean.com/sgf/properties.html#GN</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-ON">
+      <title>ON (opening played)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the opening.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#ON">http://www.red-bean.com/sgf/properties.html#ON</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-OT">
+      <title>OT (overtime rule)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Description of the overtime rule.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#OT">http://www.red-bean.com/sgf/properties.html#OT</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-PB">
+      <title>PB (black player)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the black player.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#PB">http://www.red-bean.com/sgf/properties.html#PB</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-PC">
+      <title>PC (place)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Location of the event.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#PC">http://www.red-bean.com/sgf/properties.html#PC</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-PW">
+      <title>PW (white player)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the white player.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#PW">http://www.red-bean.com/sgf/properties.html#PW</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-RE">
+      <title>RE (result)</title>
+      <para>
+        Type: <link linkend="GSGFResult">GSGFResult</link>
+      </para>
+      <para>
+        Result of the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#RE">http://www.red-bean.com/sgf/properties.html#RE</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-RO">
+      <title>RO (round)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Round name and type.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#RO">http://www.red-bean.com/sgf/properties.html#RO</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-RU">
+      <title>RU (rules)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Rules used in this game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#RU">http://www.red-bean.com/sgf/properties.html#RU</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-SO">
+      <title>SO (source)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Source (journal, internet, ...) of the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#SO">http://www.red-bean.com/sgf/properties.html#SO</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-TM">
+      <title>TM (time limits)</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        Time limits of the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#TM">http://www.red-bean.com/sgf/properties.html#TM</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-US">
+      <title>US (user)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the user who entered the game.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#US">http://www.red-bean.com/sgf/properties.html#US</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-WR">
+      <title>WR (white rank)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Rank of the white player.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#WR">http://www.red-bean.com/sgf/properties.html#WR</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-WT">
+      <title>WR (white team)</title>
+      <para>
+        Type: <link linkend="GSGFSimpleText">GSGFSimpleText</link>
+      </para>
+      <para>
+        Name of the white team.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#WT">http://www.red-bean.com/sgf/properties.html#WT</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="timing-properties">
+    <title>Timing Properties</title>
+    <sect2 id="property-BL">
+      <title>BL (time left for black)</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        Time left for black in seconds after the move was made.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#BL">http://www.red-bean.com/sgf/properties.html#BL</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-OB">
+      <title>OB</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#OB">http://www.red-bean.com/sgf/properties.html#OB</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-OW">
+      <title>OW</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#OW">http://www.red-bean.com/sgf/properties.html#OW</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-WL">
+      <title>WL (time left for white)</title>
+      <para>
+        Type: <link linkend="GSGFReal">GSGFReal</link>
+      </para>
+      <para>
+        Time left for white in seconds after the move was made.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#WL">http://www.red-bean.com/sgf/properties.html#WL</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1 id="misc-properties">
+    <title>Miscellaneous Properties</title>
+    <sect2 id="property-FG">
+      <title>FG (figure)</title>
+      <para>
+        Type: <link linkend="GSGFEmpty">GSGFEmpty</link>
+              or <link linkend="GSGFCompose">GSGFCompose</link>
+                 (of <link linkend="GSGFNumber">GSGFNumber</link>:<link linkend="GSGFSimpleText">GSGFSimpleText</link>)
+      </para>
+      <para>
+        Time left for white in seconds after the move was made.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#FG">http://www.red-bean.com/sgf/properties.html#FG</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-PM">
+      <title>PM (print move numbers)</title>
+      <para>
+        Type: <link linkend="GSGFNumber">GSGFNumber</link>
+      </para>
+      <para>
+        Specifies how move numbers should be printed.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#PM">http://www.red-bean.com/sgf/properties.html#PM</ulink>.
+      </para>
+    </sect2>
+    <sect2 id="property-VW">
+      <title>VW (view part)</title>
+      <para>
+        Type: Possibly empty <link linkend="GSGFListOf">GSGFListOf</link>,
+        item type: <link linkend="GSGFPoint">GSGFPoint</link>.
+      </para>
+      <para>
+        View only part of the board.
+      </para>
+      <para>
+        See <ulink url="http://www.red-bean.com/sgf/properties.html#VW">http://www.red-bean.com/sgf/properties.html#VW</ulink>.
+      </para>
+    </sect2>
+  </sect1>
+</chapter>
